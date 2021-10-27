@@ -4,14 +4,14 @@ function App() {
 
   const [resourceType,setResourceType] = useState('Posts')
   const [userType,setUserType] = useState('Heet')
-  const [items,setItems] = useState([])
-  console.log('Rendered the app');
 
   useEffect(() => {
    
-    fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
-        .then(response => response.json())
-        .then(json => setItems(json))
+    console.log('Changed')
+
+    return () => {
+      console.log('Return from resource changed')
+    }
 
   },[resourceType]);
 
@@ -31,8 +31,6 @@ function App() {
           <button onClick={()=>setUserType('Gokul')}>Gokul</button>
       </div>
       <h1>{userType}</h1>
-
-      <h1>{items.map(item => (  <pre> {JSON.stringify(item)} </pre>)  )}</h1>
      </>
   );
 }
