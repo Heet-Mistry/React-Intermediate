@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-import App from './App_useReducer';
+import App from './App_useCallback';
 
 ReactDOM.render(
   <React.StrictMode>
