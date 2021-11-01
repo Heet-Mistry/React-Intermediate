@@ -1,38 +1,48 @@
+// eslint-disable-next-line no-unused-vars
 import React,{useState,useReducer} from 'react'
+import Todo from './Todo'
 
-function reducer (state , action)
-{
-    switch(action.type){
+const ACTIONS = {
+    ADD_TODO :'add-todo',
+    TOGGLE_TODOS : 'toggle-todos',
+}
 
-        case 'increment' : 
-            return {count : state.count +1}
-        
-        case 'decrement' : 
-            return {count : state.count -1}
+function reducer (todos , action){
 
-        default : 
-            return state
+    // eslint-disable-next-line default-case
+    switch (action.type){
+        case ACTIONS.ADD_TODO:
+            return [...todos, newtodo(action.payload.name)]
     }
+}
+
+function newtodo(name){
+    return { id :Date.now() , name :name, complete:false }
 }
 
 const App_useReducer = () => {
 
-    const [state,dispatch] = useReducer(reducer , { count:0 } ) 
+    // eslint-disable-next-line no-unused-vars
+    const [todos , dispatch] = useReducer(reducer , [] ) 
+    const [name, setName] = useState('')
 
-    function increment (){
-        dispatch({type : 'increment'})
+    function handleSubmit (e) {
+       e.preventDefault()
+       dispatch({type : ACTIONS.ADD_TODO , payload : {name :name }})
+       setName('')
     }
 
-    function decrement (){
-       dispatch({type : 'decrement'})
-    }
+    console.log(todos);
 
     return (
-        <div>
-            <button onClick={decrement}>-</button>
-            <span>{state.count}</span>
-            <button onClick={increment}>+</button>
-        </div>
+        <>
+           <form onSubmit={handleSubmit}>
+               <input type="text" value={name} onChange={e => setName(e.target.value)} />
+           </form>
+           {todos.map(todo =>{
+                return <Todo key={todo.id} todo={todo} />
+           })}
+        </>
     )
 }
 
