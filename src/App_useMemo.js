@@ -1,4 +1,4 @@
-import React,{useState,useMemo} from 'react'
+import React,{useState,useMemo,useEffect} from 'react'
 
 const App_useMemo = () => {
 
@@ -8,11 +8,19 @@ const App_useMemo = () => {
     const doubleNumber = useMemo(()=>{
         return slowFunction(number)
     },[number])
-    
-    const themeStyles ={
-        backgroundColor : dark ? 'yellow' : 'green',
-        color : dark ? 'green' : 'yellow'    
-    }
+
+    const themeStyles = useMemo( () =>{
+        return {
+            backgroundColor : dark ? 'yellow' : 'green',
+            color : dark ? 'green' : 'yellow'    
+        }
+    },[dark])
+
+    useEffect(() => {
+        console.log('Theme Changed')
+    }, [themeStyles]);
+
+
     return (
         <div>
             <input type="number"  value={number} onChange={e=>setNumber(parseInt(e.target.value))}/>

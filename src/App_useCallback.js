@@ -10,22 +10,22 @@ const App_useCallback = () => {
         return [number,number+1,number+2]
     }
 
-    const theme ={
+    const theme = {
         backgroundColor :dark ? '#333' : '#FFF',
         color : dark ? '#FFF' : '#333'
-    }
+    } 
 
     return (
         <div style={theme}>
             <input 
             type="number" 
             value={number} 
-            onChange={(e) => setNumber(e.target.value)}
+            onChange={(e) => setNumber(parseInt(e.target.value))}
             />
             <button onClick={()=>setDark(x => !x)}>
                 Toggle Theme
             </button>
-            <List getItems={getItems}></List>
+            <List getItems={getItems} ></List>
         </div>
         
     )
