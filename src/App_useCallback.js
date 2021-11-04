@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState ,useCallback} from 'react'
 import List from './List'
 
 const App_useCallback = () => {
@@ -6,9 +6,9 @@ const App_useCallback = () => {
     const [number, setNumber] = useState(1)
     const [dark, setDark] = useState(false)
 
-    const getItems = () =>{
-        return [number,number+1,number+2]
-    }
+    const getItems = useCallback((x)=>{
+            return [number+x,number*2 + x ,number*3 +x] 
+    },[number])
 
     const theme = {
         backgroundColor :dark ? '#333' : '#FFF',
