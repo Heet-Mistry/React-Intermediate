@@ -3,7 +3,7 @@ import React from 'react'
 const App = () => {
   return (
     <div>
-        Hello
+        Hello we will learn the css in react in few minutes in
     </div>
   )
 }
